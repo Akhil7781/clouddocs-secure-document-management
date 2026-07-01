@@ -165,11 +165,52 @@ const searchDocuments = async (req, res) => {
 
     }
 };
+const getDashboardStats = async (req, res) => {
+    try {
+
+        const documents = await Document.find({
+            uploadedBy: req.user.id
+        });
+
+        const totalDocuments = documents.length;
+
+        let totalSize = 0;
+
+        documents.forEach(doc => {
+            totalSize += doc.fileSize;
+        });
+
+        const pdfCount = documents.filter(doc =>
+            doc.fileType === "application/pdf"
+        ).length;
+
+        const imageCount = documents.filter(doc =>
+            doc.fileType.startsWith("image/")
+        ).length;
+
+        res.status(200).json({
+            totalDocuments,
+            totalSize,
+            pdfCount,
+            imageCount
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            message: "Server Error"
+        });
+
+    }
+};
 
 module.exports = {
     uploadDocument,
     getDocuments,
     downloadDocument,
     deleteDocument,
-    searchDocuments
+    searchDocuments,
+    getDashboardStats
 };

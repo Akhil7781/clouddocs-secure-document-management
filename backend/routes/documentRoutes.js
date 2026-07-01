@@ -15,6 +15,12 @@ router.post(
     upload.single("document"),
     controller.uploadDocument
 );
+router.get(
+    "/stats",
+    auth,
+    controller.getDashboardStats
+);
+
 
 router.get(
     "/",
@@ -24,7 +30,7 @@ router.get(
 router.get(
     "/search",
     auth,
-    searchDocuments
+    controller.searchDocuments
 );
 
 router.get(
