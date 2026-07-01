@@ -74,7 +74,102 @@ const getDocuments = async (req, res) => {
 
 };
 
+const downloadDocument = async (req, res) => {
+
+    try {
+
+        const document = await Document.findById(req.params.id);
+
+        if (!document) {
+            return res.status(404).json({
+                message: "Document not found"
+            });
+        }
+
+        const filePath = path.join(
+            __dirname,
+            "../uploads",
+            document.fileName
+        );
+
+        res.download(filePath, document.originalName);
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            message: "Server Error"
+        });
+
+    }
+
+};
+const deleteDocument = async (req, res) => {
+    try {
+
+        const document = await Document.findById(req.params.id);
+
+        if (!document) {
+            return res.status(404).json({
+                message: "Document not found"
+            });
+        }
+
+        const filePath = path.join(__dirname, "../uploads", document.fileName);
+
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+        }
+
+        await Document.findByIdAndDelete(req.params.id);
+
+        res.status(200).json({
+            message: "Document Deleted Successfully"
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            message: "Server Error"
+        });
+
+    }
+};
+const searchDocuments = async (req, res) => {
+    try {
+
+        const keyword = req.query.keyword || "";
+
+        const documents = await Document.find({
+            uploadedBy: req.user.id,
+            originalName: {
+                $regex: keyword,
+                $options: "i"
+            }
+        }).sort({
+            createdAt: -1
+        });
+
+        res.status(200).json(documents);
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            message: "Server Error"
+        });
+
+    }
+};
+
 module.exports = {
     uploadDocument,
-    getDocuments
+    getDocuments,
+    downloadDocument,
+    deleteDocument,
+    searchDocuments
 };

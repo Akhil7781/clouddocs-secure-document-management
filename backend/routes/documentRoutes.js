@@ -5,22 +5,38 @@ const router = express.Router();
 const auth = require("../middleware/authMiddleware");
 const upload = require("../config/multer");
 
-const {
-    uploadDocument,
-    getDocuments
-} = require("../controllers/documentController");
+const controller = require("../controllers/documentController");
+
+console.log("Document Controller:", controller);
 
 router.post(
     "/upload",
     auth,
     upload.single("document"),
-    uploadDocument
+    controller.uploadDocument
 );
 
 router.get(
     "/",
     auth,
-    getDocuments
+    controller.getDocuments
+);
+router.get(
+    "/search",
+    auth,
+    searchDocuments
+);
+
+router.get(
+    "/download/:id",
+    auth,
+    controller.downloadDocument
+);
+
+router.delete(
+    "/:id",
+    auth,
+    controller.deleteDocument
 );
 
 module.exports = router;
