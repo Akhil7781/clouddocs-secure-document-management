@@ -1,10 +1,10 @@
 # ☁️ Cloud Document Management System
 
-A secure and responsive **MERN Stack** web application that enables users to upload, manage, search, download, and delete documents securely using JWT Authentication.
+A secure and responsive **MERN Stack** web application that allows users to upload, manage, search, download, and delete documents securely using **JWT Authentication**. The project is fully containerized using **Docker** and **Docker Compose** for easy deployment and consistent execution across different environments.
 
 ---
 
-## 🚀 Features
+# 🚀 Features
 
 - 🔐 User Registration & Login
 - 🛡️ JWT Authentication
@@ -14,16 +14,18 @@ A secure and responsive **MERN Stack** web application that enables users to upl
 - 🔍 Search Documents
 - 📊 Dashboard Analytics
 - 👤 User Profile
-- 📱 Responsive Design
+- 📱 Responsive User Interface
 - 🔔 Toast Notifications
 - 📁 File Type Validation
 - 📏 File Size Validation
+- 🐳 Docker Support
+- ⚡ One-command startup using Docker Compose
 
 ---
 
-## 🛠️ Tech Stack
+# 🛠️ Tech Stack
 
-### Frontend
+## Frontend
 
 - React.js
 - Vite
@@ -33,7 +35,7 @@ A secure and responsive **MERN Stack** web application that enables users to upl
 - React Hot Toast
 - React Icons
 
-### Backend
+## Backend
 
 - Node.js
 - Express.js
@@ -43,9 +45,14 @@ A secure and responsive **MERN Stack** web application that enables users to upl
 - Multer
 - bcrypt.js
 
+## DevOps
+
+- Docker
+- Docker Compose
+
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
 ```text
 cloud-document-management
@@ -57,6 +64,7 @@ cloud-document-management
 │   ├── models
 │   ├── routes
 │   ├── uploads
+│   ├── Dockerfile
 │   ├── package.json
 │   └── server.js
 │
@@ -70,55 +78,55 @@ cloud-document-management
 │   │   ├── services
 │   │   ├── App.jsx
 │   │   └── main.jsx
+│   ├── Dockerfile
 │   ├── package.json
 │   └── vite.config.js
 │
-├── screenshots
-│
+├── docker-compose.yml
 ├── README.md
 └── .gitignore
 ```
 
 ---
 
-## 🚀 Installation
+# 🚀 Installation
 
-### Clone the Repository
-
-```bash
-git clone https://github.com/Akhil7781/cloud-document-management.git
-```
-
-### Go to Project Folder
+## Clone Repository
 
 ```bash
-cd cloud-document-management
+git clone https://github.com/YOUR_GITHUB_USERNAME/cloud-document-management-system.git
 ```
 
-### Install Backend Dependencies
+## Move into the Project
+
+```bash
+cd cloud-document-management-system
+```
+
+## Install Backend Dependencies
 
 ```bash
 cd backend
 npm install
 ```
 
-### Install Frontend Dependencies
+## Install Frontend Dependencies
 
-Open another terminal
+Open another terminal.
 
 ```bash
 cd frontend
 npm install
 ```
 
-### Start Backend
+## Run Backend
 
 ```bash
 cd backend
 npm run dev
 ```
 
-### Start Frontend
+## Run Frontend
 
 ```bash
 cd frontend
@@ -127,7 +135,44 @@ npm run dev
 
 ---
 
-## ⚙️ Environment Variables
+# 🐳 Running with Docker
+
+## Build Docker Images
+
+```bash
+docker compose build
+```
+
+## Start Containers
+
+```bash
+docker compose up
+```
+
+## Start in Background
+
+```bash
+docker compose up -d
+```
+
+## Stop Containers
+
+```bash
+docker compose down
+```
+
+---
+
+# 🌐 Application URLs
+
+| Service | URL |
+|---------|------|
+| Frontend | http://localhost:5173 |
+| Backend | http://localhost:5000 |
+
+---
+
+# ⚙️ Environment Variables
 
 Create a `.env` file inside the **backend** folder.
 
@@ -141,17 +186,17 @@ JWT_SECRET=your_secret_key
 
 ---
 
-## 🔌 API Endpoints
+# 🔌 API Endpoints
 
-### Authentication
+## Authentication
 
 | Method | Endpoint | Description |
 |---------|----------|-------------|
 | POST | /api/auth/register | Register User |
 | POST | /api/auth/login | Login User |
-| GET | /api/auth/profile | User Profile |
+| GET | /api/auth/profile | Get User Profile |
 
-### Documents
+## Documents
 
 | Method | Endpoint | Description |
 |---------|----------|-------------|
@@ -164,7 +209,7 @@ JWT_SECRET=your_secret_key
 
 ---
 
-## 🔒 Security Features
+# 🔒 Security Features
 
 - JWT Authentication
 - Password Hashing using bcrypt.js
@@ -175,39 +220,41 @@ JWT_SECRET=your_secret_key
 
 ---
 
-## 📈 Future Enhancements
+# 📈 Future Enhancements
 
-- AWS S3 Cloud Storage
+- AWS S3 Integration
+- File Preview
 - File Sharing
-- Document Preview
-- Version History
 - Role-Based Access Control
+- Version History
 - Email Notifications
-- Dark Mode
-- Drag & Drop Upload
+- GitHub Actions CI/CD
+- Kubernetes Deployment
 
 ---
 
-## 🎯 Learning Outcomes
+# 📚 Learning Outcomes
 
 This project helped in understanding:
 
 - React Hooks
 - Context API
 - React Router
+- Tailwind CSS
 - REST APIs
 - Express.js
 - MongoDB & Mongoose
 - JWT Authentication
 - Multer File Upload
-- Protected Routes
 - CRUD Operations
-- Tailwind CSS
-- Full Stack Application Development
+- Protected Routes
+- Docker
+- Docker Compose
+- Multi-container Application Development
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
 **Akhil**
 
@@ -215,10 +262,12 @@ Final Year Computer Science Engineering Student
 
 ---
 
-## ⭐ Support
+# ⭐ If you like this project
 
-If you like this project, consider giving it a ⭐ on GitHub.
+Please consider giving this repository a **Star ⭐**.
 
 ---
 
-**Thank you for visiting this repository! 🚀**
+## 📜 License
+
+This project is created for learning and educational purposes.
