@@ -175,47 +175,6 @@ JWT_SECRET=your_secret_key
 
 ---
 
-## 📸 Screenshots
-
-Create a folder named **screenshots** in the project root and add these images.
-
-```text
-screenshots/
-│
-├── login.png
-├── register.png
-├── dashboard.png
-├── documents.png
-├── upload.png
-└── profile.png
-```
-
-Then display them like this:
-
-```md
-## Login
-
-![Login](screenshots/login.png)
-
-## Dashboard
-
-![Dashboard](screenshots/dashboard.png)
-
-## Documents
-
-![Documents](screenshots/documents.png)
-
-## Upload
-
-![Upload](screenshots/upload.png)
-
-## Profile
-
-![Profile](screenshots/profile.png)
-```
-
----
-
 ## 📈 Future Enhancements
 
 - AWS S3 Cloud Storage
