@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../services/authService";
+import toast from "react-hot-toast";
+import { FaCloud, FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 
 function Register() {
 
@@ -13,12 +15,10 @@ function Register() {
     });
 
     const handleChange = (e) => {
-
         setForm({
             ...form,
             [e.target.name]: e.target.value
         });
-
     };
 
     const handleSubmit = async (e) => {
@@ -29,13 +29,13 @@ function Register() {
 
             await registerUser(form);
 
-            alert("Registration Successful");
+            toast.success("Registration Successful");
 
             navigate("/login");
 
         } catch (err) {
 
-            alert(err.response?.data?.message || "Registration Failed");
+            toast.error(err.response?.data?.message || "Registration Failed");
 
         }
 
@@ -43,59 +43,97 @@ function Register() {
 
     return (
 
-        <div className="min-h-screen flex items-center justify-center bg-slate-100">
+        <div className="min-h-screen bg-gradient-to-br from-green-600 via-blue-600 to-indigo-700 flex items-center justify-center px-4">
 
-            <form
-                onSubmit={handleSubmit}
-                className="bg-white w-96 p-8 rounded-xl shadow-lg"
-            >
+            <div className="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-md">
 
-                <h1 className="text-3xl font-bold mb-6 text-center">
-                    Register
-                </h1>
+                <div className="text-center mb-8">
 
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    className="w-full border p-3 rounded mb-4"
-                    onChange={handleChange}
-                />
+                    <FaCloud className="text-6xl text-blue-600 mx-auto mb-4" />
 
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    className="w-full border p-3 rounded mb-4"
-                    onChange={handleChange}
-                />
+                    <h1 className="text-4xl font-bold text-gray-800">
+                        Create Account
+                    </h1>
 
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    className="w-full border p-3 rounded mb-5"
-                    onChange={handleChange}
-                />
+                    <p className="text-gray-500 mt-2">
+                        Join CloudDocs Today
+                    </p>
 
-                <button className="w-full bg-green-600 text-white p-3 rounded">
-                    Register
-                </button>
+                </div>
 
-                <p className="text-center mt-4">
+                <form onSubmit={handleSubmit}>
+
+                    <div className="relative mb-5">
+
+                        <FaUser className="absolute left-4 top-4 text-gray-400" />
+
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Full Name"
+                            value={form.name}
+                            onChange={handleChange}
+                            required
+                            className="w-full border rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+
+                    </div>
+
+                    <div className="relative mb-5">
+
+                        <FaEnvelope className="absolute left-4 top-4 text-gray-400" />
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Email Address"
+                            value={form.email}
+                            onChange={handleChange}
+                            required
+                            className="w-full border rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+
+                    </div>
+
+                    <div className="relative mb-6">
+
+                        <FaLock className="absolute left-4 top-4 text-gray-400" />
+
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            value={form.password}
+                            onChange={handleChange}
+                            required
+                            className="w-full border rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold transition"
+                    >
+                        Register
+                    </button>
+
+                </form>
+
+                <p className="text-center mt-6 text-gray-600">
 
                     Already have an account?
 
                     <Link
-                        className="text-blue-600 ml-2"
                         to="/login"
+                        className="text-blue-600 font-semibold ml-2 hover:underline"
                     >
                         Login
                     </Link>
 
                 </p>
 
-            </form>
+            </div>
 
         </div>
 

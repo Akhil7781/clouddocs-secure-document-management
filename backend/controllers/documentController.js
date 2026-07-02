@@ -174,11 +174,19 @@ const getDashboardStats = async (req, res) => {
 
         const totalDocuments = documents.length;
 
-        let totalSize = 0;
+        const totalStorage = (
+            documents.reduce((sum, doc) => sum + doc.fileSize, 0) /
+            (1024 * 1024)
+        ).toFixed(2);
 
-        documents.forEach(doc => {
-            totalSize += doc.fileSize;
-        });
+        const recentUploads = documents.filter(doc => {
+
+            const diff =
+                Date.now() - new Date(doc.createdAt).getTime();
+
+            return diff <= 7 * 24 * 60 * 60 * 1000;
+
+        }).length;
 
         const pdfCount = documents.filter(doc =>
             doc.fileType === "application/pdf"
@@ -190,7 +198,8 @@ const getDashboardStats = async (req, res) => {
 
         res.status(200).json({
             totalDocuments,
-            totalSize,
+            totalStorage,
+            recentUploads,
             pdfCount,
             imageCount
         });

@@ -17,3 +17,7 @@ export const logoutUser = () => {
 export const getToken = () => {
     return localStorage.getItem("token");
 };
+export const getProfile = async () => {
+    const response = await api.get("/users/profile");
+    return response.data;
+};

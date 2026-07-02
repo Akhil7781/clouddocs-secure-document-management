@@ -9,12 +9,27 @@ router.post("/register", register);
 
 router.post("/login", login);
 
-router.get("/profile", auth, (req, res) => {
+router.get("/profile", auth, async (req, res) => {
 
-    res.json({
-        message: "Protected Route Accessed",
-        user: req.user
-    });
+    try {
+
+        const User = require("../models/User");
+
+        const user = await User.findById(req.user.id).select("-password");
+
+        res.status(200).json({
+            user
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({
+            message: "Server Error"
+        });
+
+    }
 
 });
 
